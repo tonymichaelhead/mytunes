@@ -10,7 +10,8 @@ var SongQueue = Backbone.Collection.extend({
       }
     }, this);
     
-    this.on('ended dequeue', function(e) {
+    this.on('ended', function(e) {
+      console.log('sup dude');
       this.shift();
       if (this.length > 0) {
         this.playFirst();
