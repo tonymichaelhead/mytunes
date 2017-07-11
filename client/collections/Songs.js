@@ -2,9 +2,14 @@
 var Songs = Backbone.Collection.extend({
 
   model: SongModel,
+  url: 'http://parse.la.hackreactor.com/mytunes/classes/songs',
   
   initialize: function() {
     this.fetch();
+    
+    this.on('sync', function(e) {
+      console.log('yo brah');
+    });
   },
   
   fetch: function() {
@@ -18,6 +23,7 @@ var Songs = Backbone.Collection.extend({
         for (var i = 0; i < data.results.length; i++) {
           addStuff.add(data.results[i]);
         }
+        addStuff.trigger('sync');
         
       },
       error: function (data) {
