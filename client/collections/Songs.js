@@ -4,26 +4,28 @@ var Songs = Backbone.Collection.extend({
   model: SongModel,
   
   initialize: function() {
-    //this.fetch();
+    this.fetch();
   },
   
-  // fetch: function() {
-  //   $.ajax({
+  fetch: function() {
+    var addStuff = this;
     
-  //     url: 'http://parse.la.hackreactor.com/mytunes/classes/songs',
-  //     type: 'GET',
-  //     //data: { order: '-createdAt' },
-  //     success: function (data) {
-  //       console.log(JSON.stringify(data.results));
-  //       for (var i = 0; i < data.results.length; i++) {
-  //         this.add(data.results[i]);
-  //       }
-  //     },
-  //     error: function (data) {
-  //       console.log('shit son you bad');
-  //     }
-  //   });
-  // }
+    $.ajax({
+    
+      url: 'http://parse.la.hackreactor.com/mytunes/classes/songs',
+      type: 'GET',
+      success: function (data) {
+        for (var i = 0; i < data.results.length; i++) {
+          addStuff.add(data.results[i]);
+        }
+        
+      },
+      error: function (data) {
+        console.log('shit son you bad');
+      }
+    });
+    
+  }
   
   
 
